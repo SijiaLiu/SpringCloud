@@ -1,0 +1,29 @@
+#client serviceUrl defaultZone 注意格式... 这个问题很奇怪
+spring:
+  application:
+    name: eureka-ha
+  #profiles: peer1
+---
+spring:
+  profiles: peer1
+server:
+  port: 8761
+eureka:
+  instance:
+    #prefer-ip-address: true
+    hostname: peer1
+  client:
+    serviceUrl:
+      defaultZone: http://peer2:8762/eureka/
+---
+spring:
+  profiles: peer2
+server:
+  port: 8762
+eureka:
+  instance:
+    #prefer-ip-address: true
+    hostname: peer2
+  client:
+    serviceUrl:
+      defaultZone: http://peer1:8761/eureka/

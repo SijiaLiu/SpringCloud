@@ -1,0 +1,12 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://peer2:8762/eureka/,http://peer1:8761/eureka/
+      #将服务推到容器运行的时候 使用docker-compose将各个容器连接起来 http://discovery:8761/eureka/
+    #fetch-registry: false 服务的注册行为 在默认设置下，Eureka服务注册中心也会将自己作为客户端来尝试注册它自己，所以我们需要禁用它的客户端注册行为。
+    #register-with-eureka: false
+server:
+  port: 8765
+spring:
+  application:
+    name: service-hi

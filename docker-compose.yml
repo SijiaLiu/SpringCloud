@@ -1,0 +1,65 @@
+# docker-compose 可以帮助我们启动docker容器
+# 三个一级标签 version services networks
+# version 必须要写 不知道的情况下可以瞎写...
+# image 是指定服务的景象名称或者镜像ID 如果镜像本地不存在 会尝试从docker hub 拉取这个镜像
+# environment 这个标签的作用是设置镜像变量，它可以保存变量到镜像里面，也就是说启动的容器也会包含这些变量设置
+# external_links 在使用Docker过程中，我们会有许多单独使用docker run启动的容器，为了使Compose能够连接这些不在docker-compose.yml中定义的容器，
+#                我们需要一个特殊的标签，就是external_links，它可以让Compose项目里面的容器连接到那些项目配置外部的容器（前提是外部容器中必须至少有一个容器是连接到与项目内的服务的同一个网络里面）
+# depends_on 容器可以通过这个标签解决容器的依赖和启动先后的问题
+# ports 映射端口的标签 使用HOST:CONTAINER格式(建议采用字符串格式) 或者只是指定容器的端口,宿主机会随机映射端口。
+#       注意:如果这个服务需要启动多个容器的话 不能使用HOST:CONTAINER格式 因为这会让两个容器都指向同一个宿主机端口 导致冲突 可以只写 -"8763"
+# links 把容器连接起来 也可以不用...
+
+
+version: '2'
+services:
+#  eureka-server:
+#    image: lsj/eureka-server
+#    hostname: peer1
+#    environment:
+#      - SPRING_PROFILES_ACTIVE=peer1
+#    ports:
+#      - "8761:8761"
+#    container_name: eureka-sever
+#
+
+  peer1:
+    image: lsj/eureka-ha
+    environment:
+      - spring.profiles.active=peer1
+    ports:
+      - "8761:8761"
+
+  peer2:
+    image: lsj/eureka-ha
+    hostname: peer2
+    environment:
+      - spring.profiles.active=peer2
+    ports:
+      - "8762:8762"
+
+  settlement-core:
+    image: lsj/settlement
+#    ports:
+#      - "8763:8763"
+    #container_name: settlement-core
+    depends_on: [peer1, peer2]
+#    links:
+#      - eureka-server:discovery
+##      - settlement-sys
+
+  settlement-sys:
+    image: lsj/settlement-sys
+    ports:
+      - "8764:8764"
+    #container_name: settlement-sys
+    depends_on: [peer1, peer2]
+#    links:
+#      - eureka-server:discovery
+##      - settlement-core
+  service-hi:
+    image: lsj/service-hi
+    ports:
+      - "8765"
+    #container_name: service-hi
+    depends_on: [peer1, peer2]

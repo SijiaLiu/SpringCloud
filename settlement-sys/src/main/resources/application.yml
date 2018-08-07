@@ -1,0 +1,41 @@
+eureka:
+  client:
+    serviceUrl:
+      #defaultZone: http://peer2:8762/eureka/,http://peer1:8761/eureka/
+      defaultZone: http://localhost:8761/eureka
+
+    register-with-eureka: true
+    fetch-registry: true
+  instance:
+    preferIpAddress: true
+
+server:
+  port: 8764
+spring:
+  application:
+      name: settlement-sys
+ribbon:
+  ConnectTimeout: 600000
+  ReadTimeout: 600000
+  eureka:
+    enabled: true
+    ReadTimeout: 600000
+    MaxAutoRetries: 1
+feign:
+  hystrix:
+    enabled: true
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          strategy: SEMAPHORE
+          thread:
+            timeoutInMilliseconds: 6000000
+          semaphore:
+            maxConcurrentRequests: 100
+#配置FeginClient log 日志级别 FeignClient只支持debug
+logging:
+  level:
+    com.lsj.settlement.sys.clients.SettlementClient: debug
+
