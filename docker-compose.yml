@@ -11,55 +11,88 @@
 # links 把容器连接起来 也可以不用...
 
 
+## simple
 version: '2'
 services:
-#  eureka-server:
-#    image: lsj/eureka-server
-#    hostname: peer1
-#    environment:
-#      - SPRING_PROFILES_ACTIVE=peer1
-#    ports:
-#      - "8761:8761"
-#    container_name: eureka-sever
-#
-
-  peer1:
-    image: lsj/eureka-ha
-    environment:
-      - spring.profiles.active=peer1
+  eureka-server:
+    image: lsj/eureka-server
     ports:
       - "8761:8761"
+    container_name: eureka-sever
 
-  peer2:
-    image: lsj/eureka-ha
-    hostname: peer2
-    environment:
-      - spring.profiles.active=peer2
-    ports:
-      - "8762:8762"
 
   settlement-core:
     image: lsj/settlement
-#    ports:
-#      - "8763:8763"
-    #container_name: settlement-core
-    depends_on: [peer1, peer2]
-#    links:
-#      - eureka-server:discovery
-##      - settlement-sys
+    ports:
+      - "8763:8763"
+    container_name: settlement-core
+    depends_on: [eureka-server]
+    links:
+      - eureka-server:discovery
+#      - settlement-sys
 
   settlement-sys:
     image: lsj/settlement-sys
     ports:
       - "8764:8764"
-    #container_name: settlement-sys
-    depends_on: [peer1, peer2]
-#    links:
-#      - eureka-server:discovery
-##      - settlement-core
+    container_name: settlement-sys
+    depends_on: [eureka-server]
+    links:
+      - eureka-server:discovery
+#      - settlement-core
   service-hi:
     image: lsj/service-hi
     ports:
       - "8765"
-    #container_name: service-hi
-    depends_on: [peer1, peer2]
+    container_name: service-hi
+    depends_on: [eureka-server]
+
+
+
+
+
+
+
+##  eureka-server 集群
+#version: '2'
+#services:
+#  peer1:
+#    image: lsj/eureka-ha
+#    environment:
+#      - spring.profiles.active=peer1
+#    ports:
+#      - "8761:8761"
+#
+#  peer2:
+#    image: lsj/eureka-ha
+#    hostname: peer2
+#    environment:
+#      - spring.profiles.active=peer2
+#    ports:
+#      - "8762:8762"
+#
+#  settlement-core:
+#    image: lsj/settlement
+##    ports:
+##      - "8763:8763"
+#    #container_name: settlement-core 注释掉容器名称是因为想要扩容器 因为相同的服务名字会有冲突
+#    depends_on: [peer1, peer2]
+##    links:
+##      - eureka-server:discovery
+###      - settlement-sys
+#
+#  settlement-sys:
+#    image: lsj/settlement-sys
+#    ports:
+#      - "8764:8764"
+#    #container_name: settlement-sys
+#    depends_on: [peer1, peer2]
+##    links:
+##      - eureka-server:discovery
+###      - settlement-core
+#  service-hi:
+#    image: lsj/service-hi
+#    ports:
+#      - "8765"
+#    #container_name: service-hi
+#    depends_on: [peer1, peer2]

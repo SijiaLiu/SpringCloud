@@ -1,9 +1,11 @@
 package com.lsj.settlement.sys.service.impl;
 
 import com.lsj.settlement.sys.clients.SettlementClient;
+import com.lsj.settlement.sys.util.GeneralPagingResult;
 import com.lsj.settlement.sys.data.StSettlementTicket;
 import com.lsj.settlement.sys.service.StService;
-import com.lsj.settlement.sys.util.GeneralPagingResult;
+import com.lsj.zuul.settlement.sys.clients.SettlementClient;
+import com.lsj.zuul.settlement.sys.util.GeneralPagingResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

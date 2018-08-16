@@ -1,0 +1,18 @@
+server:
+  port: 8888 #这个端口号无法改变 暂时没找到解决办法
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/SijiaLiu/SpringcloudConfig.git
+          search-paths: respo
+      label: master
+eureka:
+  client:
+    serviceUrl:
+          defaultZone: http://localhost:8761/eureka/
+  instance:
+      prefer-ip-address: true

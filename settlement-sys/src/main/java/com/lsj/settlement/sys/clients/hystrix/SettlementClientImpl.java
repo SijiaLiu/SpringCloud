@@ -1,8 +1,9 @@
 package com.lsj.settlement.sys.clients.hystrix;
 
+import com.lsj.settlement.sys.util.GeneralPagingResult;
 import com.lsj.settlement.sys.clients.SettlementClient;
 import com.lsj.settlement.sys.data.StSettlementTicket;
-import com.lsj.settlement.sys.util.GeneralPagingResult;
+import com.lsj.zuul.settlement.sys.util.GeneralPagingResult;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 

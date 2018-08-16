@@ -1,0 +1,26 @@
+server:
+  port: 8767
+spring:
+  application:
+    name: config-client
+  cloud:
+    config:
+      label: master
+      profile: dev
+      #uri: http://localhost:8766/
+      discovery:
+        enabled: true
+        service-id: config-server #通过服务注册去config-server 获取配置
+  rabbitmq:
+    host: localhost
+    port: 5672  #rabbitmq的web访问地址是15672，正常的消息发送端口是5672
+    username: guest
+    password: guest
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+management:
+  security:
+    enabled: false #加这个是为了去掉鉴权问题 消息总线需要刷新
+
