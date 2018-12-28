@@ -18,7 +18,7 @@
 			<pattern>${default_pattern}</pattern>
 		</encoder>
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-			<fileNamePattern>${LOG_PATH}/logstash-tenantadmin-api-%d{yyyy-MM-dd}.log
+			<fileNamePattern>${LOG_PATH}/logstash-settlement-core-%d{yyyy-MM-dd}.log
 			</fileNamePattern>
 			<!-- keep 30 days' worth of history -->
 			<maxHistory>30</maxHistory>

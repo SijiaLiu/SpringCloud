@@ -5,6 +5,14 @@ import com.lsj.settlement.data.util.PageInfo;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
+/**
+ * class_name: STService
+ * package: com.lsj.settlement.Service
+ * describe: TODO
+ * @author liusijia
+ * @Date 2018/11/2
+**/
+
 @Service
 public interface STService {
 

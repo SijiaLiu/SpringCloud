@@ -2,10 +2,6 @@ package com.lsj.settlement.data;
 
 import com.lsj.settlement.data.domain.StSettlementSlip;
 import com.lsj.settlement.data.domain.StSettlementSlipItem;
-import com.lsj.settlement.data.domain.StSettlementSlip;
-import com.lsj.settlement.data.domain.StSettlementSlipItem;
-import com.lsj.zuul.settlement.data.domain.StSettlementSlip;
-import com.lsj.zuul.settlement.data.domain.StSettlementSlipItem;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Component;

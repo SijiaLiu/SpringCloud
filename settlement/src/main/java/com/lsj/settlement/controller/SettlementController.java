@@ -1,5 +1,6 @@
 package com.lsj.settlement.controller;
 
+import com.lsj.settlement.Service.RedisService;
 import com.lsj.settlement.Service.STService;
 import com.lsj.settlement.constant.SettlementConstant;
 import com.lsj.settlement.data.domain.StSettlementTicket;
@@ -18,13 +19,22 @@ import com.alibaba.fastjson.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * class_name: SettlementController
+ * package: com.lsj.settlement.controller
+ * describe: TODO
+ * @author liusijia
+ * @Date 2018/11/2
+**/
+
 @RestController
 @Slf4j
 public class SettlementController {
 
     @Autowired
     private STService stService;
-
+    @Autowired
+    private RedisService redisService;
 
     @ApiOperation(value = "高级查询 settlementTicket", notes = "高级查询 settlementTicket")
     @RequestMapping(value = "/liu/si/jia/settlement/ticket", method = RequestMethod.POST)
@@ -52,6 +62,7 @@ public class SettlementController {
             resultList.setResultContent(new ArrayList<>());
             resultList.setDetailDescription("failed");
         }
+        redisService.setStr("settlementTicket", resultList);
         return resultList;
     }
 
@@ -74,6 +85,5 @@ public class SettlementController {
         result.setDescription("success");
         return result;
     }
-
 
 }

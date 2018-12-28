@@ -9,7 +9,7 @@ eureka:
     preferIpAddress: true #将IP注册到eureka上 服务(容器)之间互相调用是通过 application name 匹配到一个或者多个IP 然后负载均衡
 
 server:
-  port: 8763
+  port: 8768
 
 spring:
   application:
@@ -25,7 +25,15 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.MySQL5Dialect
   datasource:
-    url: jdbc:mysql://192.168.2.193:3306/lz.settlement?useSSL=false&characterEncoding=utf8
+    url: jdbc:mysql://localhost:3306/lz.settlement?useSSL=false&characterEncoding=utf8
     username: root
     password: root
     driver-class-name: com.mysql.jdbc.Driver
+  redis:
+    host: localhost #地址本地调试可以用localhost docker上使用IP地址
+    port: 6379
+    pool:
+      max-active: 10
+      max-idle: 10
+      max-wait: -1
+      min-idle: 0
