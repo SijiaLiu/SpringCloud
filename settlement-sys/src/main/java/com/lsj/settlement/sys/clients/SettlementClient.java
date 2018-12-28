@@ -4,8 +4,6 @@ import com.lsj.settlement.sys.clients.hystrix.SettlementClientImpl;
 import com.lsj.settlement.sys.util.GeneralPagingResult;
 import com.lsj.settlement.sys.component.FeignLogConfiguration;
 import com.lsj.settlement.sys.data.StSettlementTicket;
-import com.lsj.zuul.settlement.sys.clients.hystrix.SettlementClientImpl;
-import com.lsj.zuul.settlement.sys.util.GeneralPagingResult;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.cloud.netflix.feign.FeignClient;

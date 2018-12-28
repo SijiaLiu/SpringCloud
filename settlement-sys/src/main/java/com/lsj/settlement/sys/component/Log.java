@@ -1,21 +1,23 @@
 package com.lsj.settlement.sys.component;
 
 import org.springframework.core.annotation.Order;
+import org.springframework.stereotype.Component;
 
 import java.lang.annotation.*;
 
 /**
- * class_name: PrintLog
- * package: com.lsj.settlement.component
+ * class_name: Log
+ * package: com.gemii.lizcloud.core.label.component
  * describe: TODO
+ *
  * @author liusijia
- * @Date 2018/7/27
-**/
+ * @Date 2018/12/28
+ **/
 
-@Target({ElementType.METHOD})
+@Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-public @interface PrintLog {
+public @interface Log {
 
     String desc() default "";
 

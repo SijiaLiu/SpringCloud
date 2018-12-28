@@ -5,7 +5,6 @@ import com.lsj.settlement.sys.data.StSettlementTicket;
 import com.lsj.settlement.sys.data.test;
 import com.lsj.settlement.sys.service.StService;
 import com.lsj.settlement.sys.util.GeneralContentResult;
-import com.lsj.zuul.settlement.sys.util.GeneralPagingResult;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;

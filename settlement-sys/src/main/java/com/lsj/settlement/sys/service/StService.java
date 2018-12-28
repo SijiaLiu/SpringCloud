@@ -2,9 +2,15 @@ package com.lsj.settlement.sys.service;
 
 import com.lsj.settlement.sys.util.GeneralPagingResult;
 import com.lsj.settlement.sys.data.StSettlementTicket;
-import com.lsj.zuul.settlement.sys.util.GeneralPagingResult;
 
 import java.util.List;
+/**
+ * class_name: StService
+ * package: com.lsj.settlement.sys.service
+ * describe: TODO
+ * @author liusijia
+ * @Date 2018/11/2
+**/
 
 public interface StService {
 
