@@ -45,7 +45,7 @@ public class Main {
                 }
                 List<CompletableFuture<String>> futureList = list
                         .stream()
-                        .map(x -> CompletableFuture.supplyAsync(() -> get(), executorService))
+                        .map(x -> CompletableFuture.supplyAsync(Main::get, executorService))
                         .collect(Collectors.toList());
                 List<String> resultList = futureList
                         .stream()
